@@ -1,0 +1,14 @@
+Line 17: Class Weighing.jcbutton of control cmdregister was not a loaded control class.
+Line 59: Class Weighing.jcbutton of control cmdclose was not a loaded control class.
+Line 23: The property name _ExtentX in cmdregister is invalid.
+Line 24: The property name _ExtentY in cmdregister is invalid.
+Line 25: The property name ButtonStyle in cmdregister is invalid.
+Line 36: The property name Caption in cmdregister is invalid.
+Line 38: The property name UseMaskCOlor in cmdregister is invalid.
+Line 39: The property name MaskColor in cmdregister is invalid.
+Line 17: Property Picture in cmdregister could not be set.
+Line 65: The property name _ExtentX in cmdclose is invalid.
+Line 66: The property name _ExtentY in cmdclose is invalid.
+Line 67: The property name ButtonStyle in cmdclose is invalid.
+Line 78: The property name Caption in cmdclose is invalid.
+Line 79: The property name UseMaskCOlor in cmdclose is invalid.
