@@ -2,52 +2,805 @@ VERSION 5.00
 Object = "{648A5603-2C6E-101B-82B6-000000000014}#1.1#0"; "MSCOMM32.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{E9C7E0AE-FCCA-438C-B739-9E3133C371E8}#1.0#0"; "ToggleButtonActivex.ocx"
-Begin VB.Form frmWT 
+Begin VB.Form frmWeighing 
    BackColor       =   &H8000000D&
-   ClientHeight    =   10215
+   Caption         =   "ALE INDUSTRIAL WEIGHING SCALE"
+   ClientHeight    =   11130
    ClientLeft      =   120
    ClientTop       =   465
-   ClientWidth     =   20640
-   ClipControls    =   0   'False
-   BeginProperty Font 
-      Name            =   "MS Sans Serif"
-      Size            =   9.75
-      Charset         =   0
-      Weight          =   700
-      Underline       =   0   'False
-      Italic          =   0   'False
-      Strikethrough   =   0   'False
-   EndProperty
-   Icon            =   "frmWT.frx":0000
-   KeyPreview      =   -1  'True
+   ClientWidth     =   19260
    LinkTopic       =   "Form1"
-   ScaleHeight     =   10215
-   ScaleWidth      =   20640
+   ScaleHeight     =   11130
+   ScaleWidth      =   19260
+   StartUpPosition =   3  'Windows Default
    WindowState     =   2  'Maximized
-   Begin VB.Frame Frame3 
-      BackColor       =   &H8000000D&
-      BorderStyle     =   0  'None
-      Caption         =   "Frame2"
+   Begin VB.Timer Timer1 
+      Enabled         =   0   'False
+      Interval        =   1000
+      Left            =   0
+      Top             =   5400
+   End
+   Begin VB.Timer Timer2 
+      Enabled         =   0   'False
+      Interval        =   1000
+      Left            =   240
+      Top             =   5160
+   End
+   Begin VB.Timer tdatetime 
+      Interval        =   1000
+      Left            =   0
+      Top             =   6840
+   End
+   Begin VB.Timer Timer3 
+      Enabled         =   0   'False
+      Interval        =   1000
+      Left            =   240
+      Top             =   6000
+   End
+   Begin VB.Timer Timer4 
+      Enabled         =   0   'False
+      Interval        =   1000
+      Left            =   0
+      Top             =   6000
+   End
+   Begin VB.Timer tcomm 
+      Enabled         =   0   'False
+      Interval        =   500
+      Left            =   2280
+      Top             =   120
+   End
+   Begin VB.CommandButton cmdin 
+      Caption         =   "&IN"
       BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Name            =   "Arial"
+         Size            =   9.75
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   5415
+      Height          =   855
       Left            =   840
-      TabIndex        =   22
-      Top             =   5760
-      Width           =   16095
-      Begin VB.CommandButton cmdselect 
-         BackColor       =   &H000000FF&
-         Caption         =   "SEARCH"
+      MouseIcon       =   "frmWeighing.frx":0000
+      MousePointer    =   99  'Custom
+      Picture         =   "frmWeighing.frx":0152
+      TabIndex        =   78
+      Top             =   960
+      Width           =   1300
+   End
+   Begin VB.CommandButton cmdout 
+      Caption         =   "&OUT"
+      BeginProperty Font 
+         Name            =   "Arial"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   855
+      Left            =   2280
+      MouseIcon       =   "frmWeighing.frx":1099C
+      MousePointer    =   99  'Custom
+      TabIndex        =   77
+      Top             =   960
+      Width           =   1300
+   End
+   Begin VB.CommandButton cmdsave 
+      Caption         =   "&SAVE"
+      Enabled         =   0   'False
+      BeginProperty Font 
+         Name            =   "Arial"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   855
+      Left            =   3840
+      MouseIcon       =   "frmWeighing.frx":10AEE
+      MousePointer    =   99  'Custom
+      TabIndex        =   76
+      Top             =   960
+      Width           =   1305
+   End
+   Begin VB.CommandButton cmdprint 
+      Caption         =   "&PRINT"
+      Enabled         =   0   'False
+      BeginProperty Font 
+         Name            =   "Arial"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   855
+      Left            =   5280
+      MouseIcon       =   "frmWeighing.frx":10C40
+      MousePointer    =   99  'Custom
+      TabIndex        =   75
+      Top             =   960
+      Width           =   1300
+   End
+   Begin VB.CommandButton cmdviewall 
+      Caption         =   "VIEW ALL CO&MPLETE"
+      BeginProperty Font 
+         Name            =   "Arial"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   855
+      Left            =   8160
+      MouseIcon       =   "frmWeighing.frx":10D92
+      MousePointer    =   99  'Custom
+      TabIndex        =   74
+      Top             =   960
+      Width           =   1300
+   End
+   Begin VB.CommandButton cmdviewin 
+      Caption         =   "VIEW &ALL INBOUND"
+      BeginProperty Font 
+         Name            =   "Arial"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   855
+      Left            =   6720
+      MouseIcon       =   "frmWeighing.frx":10EE4
+      MousePointer    =   99  'Custom
+      TabIndex        =   73
+      Top             =   960
+      Width           =   1300
+   End
+   Begin VB.CommandButton cmdclose 
+      Caption         =   "&CLOSE"
+      BeginProperty Font 
+         Name            =   "Arial"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   855
+      Left            =   9600
+      MouseIcon       =   "frmWeighing.frx":11036
+      MousePointer    =   99  'Custom
+      TabIndex        =   72
+      Top             =   960
+      Width           =   1300
+   End
+   Begin VB.Timer Timer5 
+      Enabled         =   0   'False
+      Interval        =   500
+      Left            =   480
+      Top             =   0
+   End
+   Begin VB.Timer Timer6 
+      Enabled         =   0   'False
+      Interval        =   500
+      Left            =   0
+      Top             =   0
+   End
+   Begin VB.Frame Frame1 
+      BackColor       =   &H80000007&
+      BorderStyle     =   0  'None
+      Caption         =   "Frame1"
+      Height          =   3615
+      Left            =   0
+      TabIndex        =   47
+      Top             =   1920
+      Width           =   19095
+      Begin VB.TextBox txtkilo 
+         Alignment       =   1  'Right Justify
+         Appearance      =   0  'Flat
+         BackColor       =   &H00C0C0C0&
+         BorderStyle     =   0  'None
          BeginProperty Font 
             Name            =   "Arial"
-            Size            =   8.25
+            Size            =   69.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00008000&
+         Height          =   1695
+         Left            =   5160
+         Locked          =   -1  'True
+         TabIndex        =   51
+         Text            =   "0"
+         Top             =   1080
+         Width           =   9015
+      End
+      Begin VB.TextBox Text2 
+         Appearance      =   0  'Flat
+         BackColor       =   &H80000001&
+         BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   13.5
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00008000&
+         Height          =   450
+         Left            =   240
+         Locked          =   -1  'True
+         TabIndex        =   50
+         Text            =   "Enter Plate Number:"
+         Top             =   1320
+         Width           =   3375
+      End
+      Begin VB.TextBox txtplatenum 
+         Appearance      =   0  'Flat
+         BackColor       =   &H00C0C0C0&
+         BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "Consolas"
+            Size            =   21.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00008000&
+         Height          =   570
+         Left            =   240
+         TabIndex        =   49
+         Top             =   1800
+         Width           =   3135
+      End
+      Begin VB.TextBox txttransac 
+         Appearance      =   0  'Flat
+         BackColor       =   &H80000001&
+         BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   13.5
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00008000&
+         Height          =   330
+         Left            =   240
+         Locked          =   -1  'True
+         TabIndex        =   48
+         Top             =   960
+         Width           =   3615
+      End
+      Begin VB.Label lblin 
+         BackStyle       =   0  'Transparent
+         Caption         =   "Weigh In:"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   11.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H8000000B&
+         Height          =   495
+         Left            =   2040
+         TabIndex        =   71
+         Top             =   120
+         Width           =   1455
+      End
+      Begin VB.Label lblstatus 
+         BackStyle       =   0  'Transparent
+         Caption         =   "Stable"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   14.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H8000000B&
+         Height          =   495
+         Left            =   15960
+         TabIndex        =   70
+         Top             =   1080
+         Width           =   1695
+      End
+      Begin VB.Label lbldate 
+         BackStyle       =   0  'Transparent
+         Caption         =   "lbldate"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   21.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FF00&
+         Height          =   495
+         Left            =   16080
+         TabIndex        =   69
+         Top             =   2400
+         Width           =   2895
+      End
+      Begin VB.Label lbltime 
+         BackStyle       =   0  'Transparent
+         Caption         =   "lbltime"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   21.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FF00&
+         Height          =   495
+         Left            =   16080
+         TabIndex        =   68
+         Top             =   3000
+         Width           =   2895
+      End
+      Begin VB.Label lblwi 
+         Alignment       =   2  'Center
+         BackColor       =   &H00C0C0C0&
+         Caption         =   "0kg"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   18
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H000000FF&
+         Height          =   495
+         Left            =   3240
+         TabIndex        =   67
+         Top             =   120
+         Width           =   2415
+      End
+      Begin VB.Label lblwo 
+         Alignment       =   2  'Center
+         BackColor       =   &H00C0C0C0&
+         Caption         =   "0kg"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   18
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H000000FF&
+         Height          =   495
+         Left            =   7440
+         TabIndex        =   66
+         Top             =   120
+         Width           =   2415
+      End
+      Begin VB.Label lblout 
+         BackStyle       =   0  'Transparent
+         Caption         =   "Weigh Out:"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   11.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H8000000B&
+         Height          =   375
+         Left            =   6000
+         TabIndex        =   65
+         Top             =   120
+         Width           =   1335
+      End
+      Begin VB.Label lblnw 
+         Alignment       =   2  'Center
+         BackColor       =   &H00C0C0C0&
+         Caption         =   "0kg"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   18
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H000000FF&
+         Height          =   495
+         Left            =   11640
+         TabIndex        =   64
+         Top             =   120
+         Width           =   2415
+      End
+      Begin VB.Label lblnet 
+         BackStyle       =   0  'Transparent
+         Caption         =   "Net Weight:"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   11.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H8000000B&
+         Height          =   615
+         Left            =   10200
+         TabIndex        =   63
+         Top             =   120
+         Width           =   1335
+      End
+      Begin VB.Label lbldatewi 
+         BackStyle       =   0  'Transparent
+         Caption         =   "lbldate"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H8000000B&
+         Height          =   255
+         Left            =   8520
+         TabIndex        =   62
+         Top             =   2880
+         Visible         =   0   'False
+         Width           =   2415
+      End
+      Begin VB.Label lbldi 
+         BackStyle       =   0  'Transparent
+         Caption         =   " DATE/TIME OF IN:"
+         DataField       =   " "
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H8000000B&
+         Height          =   255
+         Left            =   6480
+         TabIndex        =   61
+         Top             =   2880
+         Visible         =   0   'False
+         Width           =   1935
+      End
+      Begin VB.Label lbldo 
+         BackStyle       =   0  'Transparent
+         Caption         =   "DATE/TIME OF OUT:"
+         DataField       =   " "
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H8000000B&
+         Height          =   255
+         Left            =   6360
+         TabIndex        =   60
+         Top             =   3240
+         Visible         =   0   'False
+         Width           =   1935
+      End
+      Begin VB.Label lbldatewo 
+         BackStyle       =   0  'Transparent
+         Caption         =   "lbldate"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H8000000B&
+         Height          =   255
+         Left            =   8520
+         TabIndex        =   59
+         Top             =   3240
+         Visible         =   0   'False
+         Width           =   2535
+      End
+      Begin VB.Label Label7 
+         BackStyle       =   0  'Transparent
+         Caption         =   "______________________________"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H8000000B&
+         Height          =   255
+         Left            =   240
+         TabIndex        =   58
+         Top             =   2160
+         Width           =   3135
+      End
+      Begin VB.Shape Shape1 
+         BackColor       =   &H0000C000&
+         BackStyle       =   1  'Opaque
+         BorderColor     =   &H00FFFFFF&
+         FillColor       =   &H0000C000&
+         Height          =   495
+         Left            =   10680
+         Shape           =   3  'Circle
+         Top             =   3000
+         Width           =   1095
+      End
+      Begin VB.Label Label21 
+         BackStyle       =   0  'Transparent
+         Caption         =   "GO!"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   15.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H8000000B&
+         Height          =   495
+         Left            =   11640
+         TabIndex        =   57
+         Top             =   3000
+         Width           =   1335
+      End
+      Begin VB.Label Label23 
+         Alignment       =   2  'Center
+         BackColor       =   &H00C0C0C0&
+         Caption         =   "Kg"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   48
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00008000&
+         Height          =   1695
+         Left            =   14160
+         TabIndex        =   56
+         Top             =   1080
+         Width           =   1575
+      End
+      Begin VB.Label lblaverage 
+         BackStyle       =   0  'Transparent
+         Caption         =   "Average:"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   11.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H8000000B&
+         Height          =   375
+         Left            =   14520
+         TabIndex        =   55
+         Top             =   120
+         Width           =   1695
+      End
+      Begin VB.Label lblavg 
+         Alignment       =   2  'Center
+         BackColor       =   &H00C0C0C0&
+         Caption         =   "0"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   18
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H000000FF&
+         Height          =   495
+         Left            =   15840
+         TabIndex        =   54
+         Top             =   120
+         Width           =   2415
+      End
+      Begin VB.Label lblsymbol 
+         Alignment       =   2  'Center
+         BackColor       =   &H00C0C0C0&
+         Caption         =   "+"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   75.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00008000&
+         Height          =   1695
+         Left            =   4200
+         TabIndex        =   53
+         Top             =   1080
+         Width           =   1035
+      End
+      Begin VB.Label Label24 
+         BackStyle       =   0  'Transparent
+         Caption         =   "Transaction No."
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H8000000B&
+         Height          =   255
+         Left            =   240
+         TabIndex        =   52
+         Top             =   480
+         Width           =   2775
+      End
+   End
+   Begin VB.TextBox txtstatus 
+      Height          =   285
+      Left            =   3000
+      TabIndex        =   46
+      Text            =   "0"
+      Top             =   0
+      Visible         =   0   'False
+      Width           =   615
+   End
+   Begin VB.TextBox txtdate 
+      Height          =   285
+      Left            =   3840
+      TabIndex        =   45
+      Text            =   "0"
+      Top             =   0
+      Visible         =   0   'False
+      Width           =   615
+   End
+   Begin VB.TextBox Text1 
+      Height          =   375
+      Left            =   120
+      TabIndex        =   44
+      Top             =   1200
+      Visible         =   0   'False
+      Width           =   495
+   End
+   Begin VB.TextBox txtmainkilo 
+      Appearance      =   0  'Flat
+      BackColor       =   &H00C0C0C0&
+      BorderStyle     =   0  'None
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   18
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00008000&
+      Height          =   570
+      Left            =   11160
+      TabIndex        =   43
+      Top             =   1200
+      Width           =   3135
+   End
+   Begin VB.Timer tmaincomm 
+      Enabled         =   0   'False
+      Interval        =   1
+      Left            =   1680
+      Top             =   120
+   End
+   Begin VB.TextBox txtmidkilo 
+      Appearance      =   0  'Flat
+      BackColor       =   &H00C0C0C0&
+      BorderStyle     =   0  'None
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   18
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00008000&
+      Height          =   570
+      Left            =   15480
+      TabIndex        =   42
+      Top             =   1200
+      Visible         =   0   'False
+      Width           =   3135
+   End
+   Begin VB.Timer tcommmid 
+      Enabled         =   0   'False
+      Interval        =   1
+      Left            =   6600
+      Top             =   240
+   End
+   Begin VB.Timer Timer7 
+      Enabled         =   0   'False
+      Interval        =   1
+      Left            =   7440
+      Top             =   240
+   End
+   Begin VB.Timer Timer8 
+      Enabled         =   0   'False
+      Interval        =   500
+      Left            =   8160
+      Top             =   240
+   End
+   Begin VB.Frame Frame3 
+      BackColor       =   &H8000000D&
+      BorderStyle     =   0  'None
+      Caption         =   "Frame2"
+      Height          =   5415
+      Left            =   840
+      TabIndex        =   0
+      Top             =   5640
+      Width           =   16095
+      Begin VB.CommandButton cmddest 
+         Caption         =   "&ADD?"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   9
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
@@ -56,118 +809,185 @@ Begin VB.Form frmWT
          EndProperty
          Height          =   375
          Left            =   6840
-         MaskColor       =   &H000000FF&
-         TabIndex        =   78
-         Top             =   1200
-         Width           =   855
+         MouseIcon       =   "frmWeighing.frx":11188
+         MousePointer    =   99  'Custom
+         TabIndex        =   21
+         Top             =   1800
+         Width           =   1065
       End
-      Begin VB.Frame Frame2 
-         BorderStyle     =   0  'None
-         Caption         =   "Frame2"
+      Begin VB.TextBox txtweigher 
+         Appearance      =   0  'Flat
+         BackColor       =   &H00FFFFFF&
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Size            =   12
             Charset         =   0
-            Weight          =   400
+            Weight          =   700
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   195
+         ForeColor       =   &H00000000&
+         Height          =   450
+         Left            =   10200
+         Locked          =   -1  'True
+         TabIndex        =   13
+         Top             =   3960
+         Width           =   3975
+      End
+      Begin VB.CommandButton cmdac 
+         Caption         =   "&ADD?"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   9
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   -1  'True
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   375
+         Left            =   7920
+         MouseIcon       =   "frmWeighing.frx":112DA
+         MousePointer    =   99  'Custom
+         TabIndex        =   12
+         Top             =   720
+         Width           =   705
+      End
+      Begin VB.CommandButton cmdap 
+         Caption         =   "&ADD?"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   9
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   -1  'True
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   375
+         Left            =   7920
+         MouseIcon       =   "frmWeighing.frx":1142C
+         MousePointer    =   99  'Custom
+         TabIndex        =   11
+         Top             =   1200
+         Width           =   705
+      End
+      Begin VB.CommandButton cmdau 
+         Caption         =   "&ADD?"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   9
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   -1  'True
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   375
+         Left            =   6840
+         MouseIcon       =   "frmWeighing.frx":1157E
+         MousePointer    =   99  'Custom
+         TabIndex        =   10
+         Top             =   2640
+         Width           =   1065
+      End
+      Begin VB.TextBox txtprice 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BackColor       =   &H00FFFFFF&
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00000000&
+         Height          =   450
+         Left            =   10200
+         TabIndex        =   9
+         Text            =   "0"
+         Top             =   2520
+         Width           =   3975
+      End
+      Begin VB.TextBox txttotalprice 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BackColor       =   &H00FFFFFF&
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00000000&
+         Height          =   450
+         Left            =   10200
+         Locked          =   -1  'True
+         TabIndex        =   8
+         Text            =   "0.00"
+         Top             =   3000
+         Width           =   3975
+      End
+      Begin VB.TextBox txtscaleprice 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BackColor       =   &H00FFFFFF&
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00000000&
+         Height          =   450
+         Left            =   10200
+         TabIndex        =   7
+         Text            =   "0"
+         Top             =   3480
+         Width           =   3975
+      End
+      Begin VB.TextBox cmbcustomer 
+         Appearance      =   0  'Flat
+         BackColor       =   &H00FFFFFF&
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00000000&
+         Height          =   375
          Left            =   2640
-         TabIndex        =   68
-         Top             =   1080
-         Visible         =   0   'False
+         TabIndex        =   6
+         Top             =   720
          Width           =   4215
-         Begin MSDataGridLib.DataGrid DataGrid1 
-            Height          =   2775
-            Left            =   0
-            TabIndex        =   80
-            Top             =   0
-            Width           =   4215
-            _ExtentX        =   7435
-            _ExtentY        =   4895
-            _Version        =   393216
-            AllowUpdate     =   0   'False
-            ColumnHeaders   =   0   'False
-            HeadLines       =   1
-            RowHeight       =   19
-            BeginProperty HeadFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-               Name            =   "MS Sans Serif"
-               Size            =   8.25
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-               Name            =   "MS Sans Serif"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   700
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            ColumnCount     =   2
-            BeginProperty Column00 
-               DataField       =   ""
-               Caption         =   ""
-               BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
-                  Type            =   0
-                  Format          =   ""
-                  HaveTrueFalseNull=   0
-                  FirstDayOfWeek  =   0
-                  FirstWeekOfYear =   0
-                  LCID            =   1033
-                  SubFormatType   =   0
-               EndProperty
-            EndProperty
-            BeginProperty Column01 
-               DataField       =   ""
-               Caption         =   ""
-               BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
-                  Type            =   0
-                  Format          =   ""
-                  HaveTrueFalseNull=   0
-                  FirstDayOfWeek  =   0
-                  FirstWeekOfYear =   0
-                  LCID            =   1033
-                  SubFormatType   =   0
-               EndProperty
-            EndProperty
-            SplitCount      =   1
-            BeginProperty Split0 
-               BeginProperty Column00 
-               EndProperty
-               BeginProperty Column01 
-               EndProperty
-            EndProperty
-         End
       End
       Begin VB.Frame Frame4 
          BorderStyle     =   0  'None
          Caption         =   "Frame2"
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
          Height          =   195
          Left            =   2640
-         TabIndex        =   71
+         TabIndex        =   4
          Top             =   1560
          Visible         =   0   'False
          Width           =   4215
          Begin MSDataGridLib.DataGrid DataGrid2 
             Height          =   2775
             Left            =   0
-            TabIndex        =   72
+            TabIndex        =   5
             Top             =   45
             Width           =   4215
             _ExtentX        =   7435
@@ -231,94 +1051,88 @@ Begin VB.Form frmWT
             EndProperty
          End
       End
-      Begin VB.TextBox cmbcustomer 
-         Appearance      =   0  'Flat
-         BackColor       =   &H00FFFFFF&
-         BeginProperty Font 
-            Name            =   "Arial"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H00000000&
-         Height          =   375
+      Begin VB.Frame Frame2 
+         BorderStyle     =   0  'None
+         Caption         =   "Frame2"
+         Height          =   195
          Left            =   2640
-         TabIndex        =   69
-         Top             =   720
+         TabIndex        =   2
+         Top             =   1080
+         Visible         =   0   'False
          Width           =   4215
+         Begin MSDataGridLib.DataGrid DataGrid1 
+            Height          =   2775
+            Left            =   0
+            TabIndex        =   3
+            Top             =   0
+            Width           =   4215
+            _ExtentX        =   7435
+            _ExtentY        =   4895
+            _Version        =   393216
+            AllowUpdate     =   0   'False
+            ColumnHeaders   =   0   'False
+            HeadLines       =   1
+            RowHeight       =   19
+            BeginProperty HeadFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+               Name            =   "MS Sans Serif"
+               Size            =   8.25
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ColumnCount     =   2
+            BeginProperty Column00 
+               DataField       =   ""
+               Caption         =   ""
+               BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
+                  Type            =   0
+                  Format          =   ""
+                  HaveTrueFalseNull=   0
+                  FirstDayOfWeek  =   0
+                  FirstWeekOfYear =   0
+                  LCID            =   1033
+                  SubFormatType   =   0
+               EndProperty
+            EndProperty
+            BeginProperty Column01 
+               DataField       =   ""
+               Caption         =   ""
+               BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
+                  Type            =   0
+                  Format          =   ""
+                  HaveTrueFalseNull=   0
+                  FirstDayOfWeek  =   0
+                  FirstWeekOfYear =   0
+                  LCID            =   1033
+                  SubFormatType   =   0
+               EndProperty
+            EndProperty
+            SplitCount      =   1
+            BeginProperty Split0 
+               BeginProperty Column00 
+               EndProperty
+               BeginProperty Column01 
+               EndProperty
+            EndProperty
+         End
       End
-      Begin VB.TextBox txtscaleprice 
-         Alignment       =   2  'Center
-         Appearance      =   0  'Flat
-         BackColor       =   &H00FFFFFF&
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   12
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H00000000&
-         Height          =   450
-         Left            =   10200
-         TabIndex        =   63
-         Text            =   "0"
-         Top             =   3480
-         Width           =   3975
-      End
-      Begin VB.TextBox txttotalprice 
-         Alignment       =   2  'Center
-         Appearance      =   0  'Flat
-         BackColor       =   &H00FFFFFF&
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   12
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H00000000&
-         Height          =   450
-         Left            =   10200
-         Locked          =   -1  'True
-         TabIndex        =   55
-         Text            =   "0.00"
-         Top             =   3000
-         Width           =   3975
-      End
-      Begin VB.TextBox txtprice 
-         Alignment       =   2  'Center
-         Appearance      =   0  'Flat
-         BackColor       =   &H00FFFFFF&
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   12
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H00000000&
-         Height          =   450
-         Left            =   10200
-         TabIndex        =   51
-         Text            =   "0"
-         Top             =   2520
-         Width           =   3975
-      End
-      Begin VB.CommandButton cmdau 
-         Caption         =   "&ADD?"
+      Begin VB.CommandButton cmdselect 
+         BackColor       =   &H000000FF&
+         Caption         =   "SEARCH"
          BeginProperty Font 
             Name            =   "Arial"
-            Size            =   9
+            Size            =   8.25
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
@@ -327,136 +1141,15 @@ Begin VB.Form frmWT
          EndProperty
          Height          =   375
          Left            =   6840
-         MouseIcon       =   "frmWT.frx":000C
-         MousePointer    =   99  'Custom
-         TabIndex        =   29
-         Top             =   2640
-         Width           =   1065
-      End
-      Begin VB.CommandButton cmdap 
-         Caption         =   "&ADD?"
-         BeginProperty Font 
-            Name            =   "Arial"
-            Size            =   9
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   -1  'True
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   375
-         Left            =   7920
-         MouseIcon       =   "frmWT.frx":015E
-         MousePointer    =   99  'Custom
-         TabIndex        =   28
+         MaskColor       =   &H000000FF&
+         TabIndex        =   1
          Top             =   1200
-         Width           =   705
-      End
-      Begin VB.CommandButton cmdac 
-         Caption         =   "&ADD?"
-         BeginProperty Font 
-            Name            =   "Arial"
-            Size            =   9
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   -1  'True
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   375
-         Left            =   7920
-         MouseIcon       =   "frmWT.frx":02B0
-         MousePointer    =   99  'Custom
-         TabIndex        =   27
-         Top             =   720
-         Width           =   705
-      End
-      Begin VB.TextBox txtweigher 
-         Appearance      =   0  'Flat
-         BackColor       =   &H00FFFFFF&
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   12
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H00000000&
-         Height          =   450
-         Left            =   10200
-         Locked          =   -1  'True
-         TabIndex        =   25
-         Top             =   3960
-         Width           =   3975
-      End
-      Begin VB.TextBox txtqty 
-         Alignment       =   2  'Center
-         Appearance      =   0  'Flat
-         BackColor       =   &H00FFFFFF&
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   12
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H00000000&
-         Height          =   450
-         Left            =   2640
-         TabIndex        =   24
-         Text            =   "0"
-         Top             =   2160
-         Width           =   4215
-      End
-      Begin VB.ComboBox cmbunit 
-         Appearance      =   0  'Flat
-         BackColor       =   &H0000FFFF&
-         BeginProperty Font 
-            Name            =   "Times New Roman"
-            Size            =   9
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   345
-         ItemData        =   "frmWT.frx":0402
-         Left            =   2640
-         List            =   "frmWT.frx":0404
-         TabIndex        =   67
-         Top             =   2640
-         Width           =   4215
-      End
-      Begin VB.TextBox txtremarks 
-         Alignment       =   2  'Center
-         Appearance      =   0  'Flat
-         BackColor       =   &H00FFFFFF&
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   12
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H00000000&
-         Height          =   810
-         Left            =   2640
-         MultiLine       =   -1  'True
-         TabIndex        =   23
-         Top             =   3120
-         Width           =   4215
+         Width           =   855
       End
       Begin ToggleButtonActivex.ToggleButton ToggleButton1 
          Height          =   315
          Left            =   2640
-         TabIndex        =   30
+         TabIndex        =   17
          Top             =   240
          Width           =   1095
          _ExtentX        =   1931
@@ -481,6 +1174,27 @@ Begin VB.Form frmWT
             Strikethrough   =   0   'False
          EndProperty
       End
+      Begin VB.TextBox txtremarks 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BackColor       =   &H00FFFFFF&
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00000000&
+         Height          =   810
+         Left            =   2640
+         MultiLine       =   -1  'True
+         TabIndex        =   16
+         Top             =   3120
+         Width           =   4215
+      End
       Begin VB.TextBox txtweighid 
          Appearance      =   0  'Flat
          BeginProperty Font 
@@ -494,7 +1208,7 @@ Begin VB.Form frmWT
          EndProperty
          Height          =   375
          Left            =   5520
-         TabIndex        =   26
+         TabIndex        =   18
          Top             =   3360
          Visible         =   0   'False
          Width           =   495
@@ -514,7 +1228,7 @@ Begin VB.Form frmWT
          ForeColor       =   &H00000000&
          Height          =   375
          Left            =   2640
-         TabIndex        =   79
+         TabIndex        =   19
          Top             =   1200
          Width           =   4215
       End
@@ -531,384 +1245,72 @@ Begin VB.Form frmWT
             Strikethrough   =   0   'False
          EndProperty
          Height          =   345
-         ItemData        =   "frmWT.frx":0406
+         ItemData        =   "frmWeighing.frx":116D0
          Left            =   2640
-         List            =   "frmWT.frx":0408
-         TabIndex        =   83
+         List            =   "frmWeighing.frx":116D2
+         TabIndex        =   20
          Top             =   1800
          Width           =   4215
       End
-      Begin VB.CommandButton cmddest 
-         Caption         =   "&ADD?"
+      Begin VB.TextBox txtqty 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BackColor       =   &H00FFFFFF&
          BeginProperty Font 
-            Name            =   "Arial"
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00000000&
+         Height          =   450
+         Left            =   2640
+         TabIndex        =   14
+         Text            =   "0"
+         Top             =   2160
+         Width           =   4215
+      End
+      Begin VB.ComboBox cmbunit 
+         Appearance      =   0  'Flat
+         BackColor       =   &H0000FFFF&
+         BeginProperty Font 
+            Name            =   "Times New Roman"
             Size            =   9
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
-            Italic          =   -1  'True
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   375
-         Left            =   6840
-         MouseIcon       =   "frmWT.frx":040A
-         MousePointer    =   99  'Custom
-         TabIndex        =   84
-         Top             =   1800
-         Width           =   1065
-      End
-      Begin VB.Label Label5 
-         BackStyle       =   0  'Transparent
-         Caption         =   "COUNT # :"
-         BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         ForeColor       =   &H80000009&
-         Height          =   255
-         Index           =   4
-         Left            =   1080
-         TabIndex        =   85
-         Top             =   4080
-         Width           =   2055
-      End
-      Begin VB.Label Label4 
-         BackStyle       =   0  'Transparent
-         Caption         =   "DESTINATION :"
-         BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H80000009&
-         Height          =   255
-         Index           =   6
-         Left            =   720
-         TabIndex        =   82
-         Top             =   1800
-         Width           =   1815
-      End
-      Begin VB.Label Label18 
-         BackStyle       =   0  'Transparent
-         Caption         =   "Click ADD button to add new UNIT OF MEASURE."
-         BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   6.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H00000000&
-         Height          =   255
-         Left            =   10200
-         TabIndex        =   81
-         Top             =   1680
+         Height          =   345
+         ItemData        =   "frmWeighing.frx":116D4
+         Left            =   2640
+         List            =   "frmWeighing.frx":116D6
+         TabIndex        =   15
+         Top             =   2640
          Width           =   4215
       End
-      Begin VB.Label Label16 
+      Begin VB.Label lblcount 
          BackStyle       =   0  'Transparent
-         Caption         =   "Search, Arrow Down to select customer and Press Enter."
+         Caption         =   "0"
          BeginProperty Font 
             Name            =   "Tahoma"
-            Size            =   6.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H00000000&
-         Height          =   255
-         Left            =   10200
-         TabIndex        =   74
-         Top             =   960
-         Width           =   5415
-      End
-      Begin VB.Label Label10 
-         BackStyle       =   0  'Transparent
-         Caption         =   "Click ADD button to add new CUSTOMER"
-         BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   6.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H00000000&
-         Height          =   135
-         Left            =   10200
-         TabIndex        =   73
-         Top             =   600
-         Width           =   5415
-      End
-      Begin VB.Label Label5 
-         BackStyle       =   0  'Transparent
-         Caption         =   "WEIGHING NUMBER:"
-         BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   9.75
+            Size            =   12
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         ForeColor       =   &H80000009&
-         Height          =   255
-         Index           =   3
-         Left            =   360
-         TabIndex        =   62
-         Top             =   4800
-         Width           =   2175
-      End
-      Begin VB.Label Label4 
-         BackStyle       =   0  'Transparent
-         Caption         =   "T.S. PRICE:"
-         BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H80000009&
-         Height          =   255
-         Index           =   5
-         Left            =   8760
-         TabIndex        =   61
-         Top             =   3600
-         Width           =   1335
-      End
-      Begin VB.Label Label4 
-         BackStyle       =   0  'Transparent
-         Caption         =   "TOTAL PRICE:"
-         BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H80000009&
-         Height          =   255
-         Index           =   3
-         Left            =   8520
-         TabIndex        =   54
-         Top             =   3120
-         Width           =   1575
-      End
-      Begin VB.Label Label4 
-         BackStyle       =   0  'Transparent
-         Caption         =   "PRICE:"
-         BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H80000009&
-         Height          =   255
-         Index           =   1
-         Left            =   9120
-         TabIndex        =   52
-         Top             =   2640
-         Width           =   735
-      End
-      Begin VB.Label Label5 
-         BackStyle       =   0  'Transparent
-         Caption         =   "OPERATOR:"
-         BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H80000009&
-         Height          =   255
-         Index           =   0
-         Left            =   8760
-         TabIndex        =   40
+         ForeColor       =   &H000000FF&
+         Height          =   375
+         Left            =   2640
+         TabIndex        =   41
          Top             =   4080
-         Width           =   1335
-      End
-      Begin VB.Label Label3 
-         BackStyle       =   0  'Transparent
-         Caption         =   "CUSTOMER NAME:"
-         BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H80000009&
-         Height          =   255
-         Left            =   480
-         TabIndex        =   39
-         Top             =   840
-         Width           =   1935
-      End
-      Begin VB.Label Label4 
-         BackStyle       =   0  'Transparent
-         Caption         =   "COMMODITY :"
-         BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H80000009&
-         Height          =   255
-         Index           =   0
-         Left            =   840
-         TabIndex        =   38
-         Top             =   1320
-         Width           =   1695
-      End
-      Begin VB.Label Label4 
-         BackStyle       =   0  'Transparent
-         Caption         =   " QUANTITY OF:"
-         BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H80000009&
-         Height          =   255
-         Index           =   2
-         Left            =   720
-         TabIndex        =   37
-         Top             =   2280
-         Width           =   1815
-      End
-      Begin VB.Label Label4 
-         BackStyle       =   0  'Transparent
-         Caption         =   " UNIT OF MEASURE:"
-         BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H80000009&
-         Height          =   255
-         Index           =   4
-         Left            =   360
-         TabIndex        =   36
-         Top             =   2760
-         Width           =   2175
-      End
-      Begin VB.Label Label17 
-         BackStyle       =   0  'Transparent
-         Caption         =   "Click ADD button to add new COMMODITY"
-         BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   6.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H00000000&
-         Height          =   255
-         Left            =   10200
-         TabIndex        =   35
-         Top             =   1320
-         Width           =   4695
-      End
-      Begin VB.Label Label19 
-         BackStyle       =   0  'Transparent
-         Caption         =   "Click to Scale Offline."
-         BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   6.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H00000000&
-         Height          =   255
-         Left            =   3840
-         TabIndex        =   34
-         Top             =   360
-         Width           =   1695
-      End
-      Begin VB.Label Label5 
-         BackStyle       =   0  'Transparent
-         Caption         =   "SCALE OFFLINE:"
-         BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H80000009&
-         Height          =   255
-         Index           =   1
-         Left            =   720
-         TabIndex        =   33
-         Top             =   240
-         Width           =   1815
-      End
-      Begin VB.Label Label20 
-         BackStyle       =   0  'Transparent
-         Caption         =   "Note: After TURN ON Input the weight in the gray box."
-         BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   6.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H00000000&
-         Height          =   255
-         Left            =   5520
-         TabIndex        =   32
-         Top             =   360
-         Width           =   4695
+         Width           =   5895
       End
       Begin VB.Label Label5 
          BackStyle       =   0  'Transparent
@@ -926,851 +1328,376 @@ Begin VB.Form frmWT
          Height          =   255
          Index           =   2
          Left            =   1200
-         TabIndex        =   31
+         TabIndex        =   40
          Top             =   3120
          Width           =   1455
       End
-      Begin VB.Label lblcount 
+      Begin VB.Label Label20 
          BackStyle       =   0  'Transparent
-         Caption         =   "0"
+         Caption         =   "Note: After TURN ON Input the weight in the gray box."
          BeginProperty Font 
             Name            =   "Tahoma"
-            Size            =   12
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H000000FF&
-         Height          =   375
-         Left            =   2640
-         TabIndex        =   64
-         Top             =   4080
-         Width           =   5895
-      End
-   End
-   Begin VB.Timer Timer8 
-      Enabled         =   0   'False
-      Interval        =   500
-      Left            =   8160
-      Top             =   360
-   End
-   Begin VB.Timer Timer7 
-      Enabled         =   0   'False
-      Interval        =   1
-      Left            =   7440
-      Top             =   360
-   End
-   Begin VB.Timer tcommmid 
-      Enabled         =   0   'False
-      Interval        =   1
-      Left            =   6600
-      Top             =   360
-   End
-   Begin VB.TextBox txtmidkilo 
-      Appearance      =   0  'Flat
-      BackColor       =   &H00C0C0C0&
-      BorderStyle     =   0  'None
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   18
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H00008000&
-      Height          =   570
-      Left            =   15480
-      TabIndex        =   76
-      Top             =   1320
-      Visible         =   0   'False
-      Width           =   3135
-   End
-   Begin VB.Timer tmaincomm 
-      Enabled         =   0   'False
-      Interval        =   1
-      Left            =   1680
-      Top             =   240
-   End
-   Begin VB.TextBox txtmainkilo 
-      Appearance      =   0  'Flat
-      BackColor       =   &H00C0C0C0&
-      BorderStyle     =   0  'None
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   18
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H00008000&
-      Height          =   570
-      Left            =   11160
-      TabIndex        =   70
-      Top             =   1320
-      Width           =   3135
-   End
-   Begin VB.TextBox Text1 
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   375
-      Left            =   120
-      TabIndex        =   65
-      Top             =   1320
-      Visible         =   0   'False
-      Width           =   495
-   End
-   Begin VB.TextBox txtdate 
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   285
-      Left            =   3840
-      TabIndex        =   58
-      Text            =   "0"
-      Top             =   120
-      Visible         =   0   'False
-      Width           =   615
-   End
-   Begin VB.TextBox txtstatus 
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   285
-      Left            =   3000
-      TabIndex        =   57
-      Text            =   "0"
-      Top             =   120
-      Visible         =   0   'False
-      Width           =   615
-   End
-   Begin VB.Frame Frame1 
-      BackColor       =   &H80000007&
-      BorderStyle     =   0  'None
-      Caption         =   "Frame1"
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   3615
-      Left            =   0
-      TabIndex        =   0
-      Top             =   2040
-      Width           =   18615
-      Begin VB.TextBox txttransac 
-         Appearance      =   0  'Flat
-         BackColor       =   &H80000001&
-         BorderStyle     =   0  'None
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   13.5
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H00008000&
-         Height          =   330
-         Left            =   240
-         Locked          =   -1  'True
-         TabIndex        =   4
-         Top             =   960
-         Width           =   3615
-      End
-      Begin VB.TextBox txtplatenum 
-         Appearance      =   0  'Flat
-         BackColor       =   &H00C0C0C0&
-         BorderStyle     =   0  'None
-         BeginProperty Font 
-            Name            =   "Consolas"
-            Size            =   21.75
+            Size            =   6.75
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         ForeColor       =   &H00008000&
-         Height          =   570
-         Left            =   240
-         TabIndex        =   66
-         Top             =   1800
-         Width           =   3135
-      End
-      Begin VB.TextBox Text2 
-         Appearance      =   0  'Flat
-         BackColor       =   &H80000001&
-         BorderStyle     =   0  'None
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   13.5
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H00008000&
-         Height          =   450
-         Left            =   240
-         Locked          =   -1  'True
-         TabIndex        =   3
-         Text            =   "Enter Plate Number:"
-         Top             =   1320
-         Width           =   3375
-      End
-      Begin VB.TextBox txtkilo 
-         Alignment       =   1  'Right Justify
-         Appearance      =   0  'Flat
-         BackColor       =   &H00C0C0C0&
-         BorderStyle     =   0  'None
-         BeginProperty Font 
-            Name            =   "Arial"
-            Size            =   69.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H00008000&
-         Height          =   1695
-         Left            =   5160
-         Locked          =   -1  'True
-         TabIndex        =   2
-         Text            =   "0"
-         Top             =   1080
-         Width           =   9015
-      End
-      Begin VB.Label Label24 
-         BackStyle       =   0  'Transparent
-         Caption         =   "Transaction No."
-         BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   12
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H8000000B&
+         ForeColor       =   &H00000000&
          Height          =   255
-         Left            =   240
-         TabIndex        =   77
-         Top             =   480
-         Width           =   2775
+         Left            =   5520
+         TabIndex        =   39
+         Top             =   360
+         Width           =   4695
       End
-      Begin VB.Label lblsymbol 
-         Alignment       =   2  'Center
-         BackColor       =   &H00C0C0C0&
-         Caption         =   "+"
+      Begin VB.Label Label5 
+         BackStyle       =   0  'Transparent
+         Caption         =   "SCALE OFFLINE:"
          BeginProperty Font 
-            Name            =   "Arial"
-            Size            =   75.75
+            Name            =   "Tahoma"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H80000009&
+         Height          =   255
+         Index           =   1
+         Left            =   720
+         TabIndex        =   38
+         Top             =   240
+         Width           =   1815
+      End
+      Begin VB.Label Label19 
+         BackStyle       =   0  'Transparent
+         Caption         =   "Click to Scale Offline."
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   6.75
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         ForeColor       =   &H00008000&
-         Height          =   1695
-         Left            =   4200
-         TabIndex        =   75
-         Top             =   1080
-         Width           =   1035
-      End
-      Begin VB.Label lblavg 
-         Alignment       =   2  'Center
-         BackColor       =   &H00C0C0C0&
-         Caption         =   "0"
-         BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   18
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H000000FF&
-         Height          =   495
-         Left            =   15840
-         TabIndex        =   60
-         Top             =   120
-         Width           =   2415
-      End
-      Begin VB.Label lblaverage 
-         BackStyle       =   0  'Transparent
-         Caption         =   "Average:"
-         BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   11.25
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H8000000B&
-         Height          =   375
-         Left            =   14520
-         TabIndex        =   59
-         Top             =   120
+         ForeColor       =   &H00000000&
+         Height          =   255
+         Left            =   3840
+         TabIndex        =   37
+         Top             =   360
          Width           =   1695
       End
-      Begin VB.Label Label23 
-         Alignment       =   2  'Center
-         BackColor       =   &H00C0C0C0&
-         Caption         =   "Kg"
+      Begin VB.Label Label17 
+         BackStyle       =   0  'Transparent
+         Caption         =   "Click ADD button to add new COMMODITY"
          BeginProperty Font 
-            Name            =   "Arial"
-            Size            =   48
+            Name            =   "Tahoma"
+            Size            =   6.75
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         ForeColor       =   &H00008000&
-         Height          =   1695
-         Left            =   14160
-         TabIndex        =   56
-         Top             =   1080
+         ForeColor       =   &H00000000&
+         Height          =   255
+         Left            =   10200
+         TabIndex        =   36
+         Top             =   1320
+         Width           =   4695
+      End
+      Begin VB.Label Label4 
+         BackStyle       =   0  'Transparent
+         Caption         =   " UNIT OF MEASURE:"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H80000009&
+         Height          =   255
+         Index           =   4
+         Left            =   360
+         TabIndex        =   35
+         Top             =   2760
+         Width           =   2175
+      End
+      Begin VB.Label Label4 
+         BackStyle       =   0  'Transparent
+         Caption         =   " QUANTITY OF:"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H80000009&
+         Height          =   255
+         Index           =   2
+         Left            =   720
+         TabIndex        =   34
+         Top             =   2280
+         Width           =   1815
+      End
+      Begin VB.Label Label4 
+         BackStyle       =   0  'Transparent
+         Caption         =   "COMMODITY :"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H80000009&
+         Height          =   255
+         Index           =   0
+         Left            =   840
+         TabIndex        =   33
+         Top             =   1320
+         Width           =   1695
+      End
+      Begin VB.Label Label3 
+         BackStyle       =   0  'Transparent
+         Caption         =   "CUSTOMER NAME:"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H80000009&
+         Height          =   255
+         Left            =   480
+         TabIndex        =   32
+         Top             =   840
+         Width           =   1935
+      End
+      Begin VB.Label Label5 
+         BackStyle       =   0  'Transparent
+         Caption         =   "OPERATOR:"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H80000009&
+         Height          =   255
+         Index           =   0
+         Left            =   8760
+         TabIndex        =   31
+         Top             =   4080
+         Width           =   1335
+      End
+      Begin VB.Label Label4 
+         BackStyle       =   0  'Transparent
+         Caption         =   "PRICE:"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H80000009&
+         Height          =   255
+         Index           =   1
+         Left            =   9120
+         TabIndex        =   30
+         Top             =   2640
+         Width           =   735
+      End
+      Begin VB.Label Label4 
+         BackStyle       =   0  'Transparent
+         Caption         =   "TOTAL PRICE:"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H80000009&
+         Height          =   255
+         Index           =   3
+         Left            =   8520
+         TabIndex        =   29
+         Top             =   3120
          Width           =   1575
       End
-      Begin VB.Label Label21 
+      Begin VB.Label Label4 
          BackStyle       =   0  'Transparent
-         Caption         =   "GO!"
+         Caption         =   "T.S. PRICE:"
          BeginProperty Font 
             Name            =   "Tahoma"
-            Size            =   15.75
+            Size            =   9.75
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         ForeColor       =   &H8000000B&
-         Height          =   495
-         Left            =   11640
-         TabIndex        =   53
-         Top             =   3000
+         ForeColor       =   &H80000009&
+         Height          =   255
+         Index           =   5
+         Left            =   8760
+         TabIndex        =   28
+         Top             =   3600
          Width           =   1335
       End
-      Begin VB.Shape Shape1 
-         BackColor       =   &H0000C000&
-         BackStyle       =   1  'Opaque
-         BorderColor     =   &H00FFFFFF&
-         FillColor       =   &H0000C000&
-         Height          =   495
-         Left            =   10680
-         Shape           =   3  'Circle
-         Top             =   3000
-         Width           =   1095
-      End
-      Begin VB.Label Label7 
+      Begin VB.Label Label5 
          BackStyle       =   0  'Transparent
-         Caption         =   "______________________________"
+         Caption         =   "WEIGHING NUMBER:"
          BeginProperty Font 
             Name            =   "Tahoma"
             Size            =   9.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H8000000B&
-         Height          =   255
-         Left            =   240
-         TabIndex        =   18
-         Top             =   2160
-         Width           =   3135
-      End
-      Begin VB.Label lbldatewo 
-         BackStyle       =   0  'Transparent
-         Caption         =   "lbldate"
-         BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H8000000B&
-         Height          =   255
-         Left            =   8520
-         TabIndex        =   17
-         Top             =   3240
-         Visible         =   0   'False
-         Width           =   2535
-      End
-      Begin VB.Label lbldo 
-         BackStyle       =   0  'Transparent
-         Caption         =   "DATE/TIME OF OUT:"
-         DataField       =   " "
-         BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H8000000B&
-         Height          =   255
-         Left            =   6360
-         TabIndex        =   16
-         Top             =   3240
-         Visible         =   0   'False
-         Width           =   1935
-      End
-      Begin VB.Label lbldi 
-         BackStyle       =   0  'Transparent
-         Caption         =   " DATE/TIME OF IN:"
-         DataField       =   " "
-         BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H8000000B&
-         Height          =   255
-         Left            =   6480
-         TabIndex        =   15
-         Top             =   2880
-         Visible         =   0   'False
-         Width           =   1935
-      End
-      Begin VB.Label lbldatewi 
-         BackStyle       =   0  'Transparent
-         Caption         =   "lbldate"
-         BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H8000000B&
-         Height          =   255
-         Left            =   8520
-         TabIndex        =   14
-         Top             =   2880
-         Visible         =   0   'False
-         Width           =   2415
-      End
-      Begin VB.Label lblnet 
-         BackStyle       =   0  'Transparent
-         Caption         =   "Net Weight:"
-         BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   11.25
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         ForeColor       =   &H8000000B&
-         Height          =   615
+         ForeColor       =   &H80000009&
+         Height          =   255
+         Index           =   3
+         Left            =   360
+         TabIndex        =   27
+         Top             =   4800
+         Width           =   2175
+      End
+      Begin VB.Label Label10 
+         BackStyle       =   0  'Transparent
+         Caption         =   "Click ADD button to add new CUSTOMER"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   6.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00000000&
+         Height          =   135
          Left            =   10200
-         TabIndex        =   13
-         Top             =   120
-         Width           =   1335
+         TabIndex        =   26
+         Top             =   600
+         Width           =   5415
       End
-      Begin VB.Label lblnw 
-         Alignment       =   2  'Center
-         BackColor       =   &H00C0C0C0&
-         Caption         =   "0kg"
-         BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   18
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H000000FF&
-         Height          =   495
-         Left            =   11640
-         TabIndex        =   12
-         Top             =   120
-         Width           =   2415
-      End
-      Begin VB.Label lblout 
+      Begin VB.Label Label16 
          BackStyle       =   0  'Transparent
-         Caption         =   "Weigh Out:"
+         Caption         =   "Search, Arrow Down to select customer and Press Enter."
          BeginProperty Font 
             Name            =   "Tahoma"
-            Size            =   11.25
+            Size            =   6.75
             Charset         =   0
-            Weight          =   700
+            Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         ForeColor       =   &H8000000B&
-         Height          =   375
-         Left            =   6000
-         TabIndex        =   11
-         Top             =   120
-         Width           =   1335
+         ForeColor       =   &H00000000&
+         Height          =   255
+         Left            =   10200
+         TabIndex        =   25
+         Top             =   960
+         Width           =   5415
       End
-      Begin VB.Label lblwo 
-         Alignment       =   2  'Center
-         BackColor       =   &H00C0C0C0&
-         Caption         =   "0kg"
-         BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   18
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H000000FF&
-         Height          =   495
-         Left            =   7440
-         TabIndex        =   10
-         Top             =   120
-         Width           =   2415
-      End
-      Begin VB.Label lblwi 
-         Alignment       =   2  'Center
-         BackColor       =   &H00C0C0C0&
-         Caption         =   "0kg"
-         BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   18
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H000000FF&
-         Height          =   495
-         Left            =   3240
-         TabIndex        =   9
-         Top             =   120
-         Width           =   2415
-      End
-      Begin VB.Label lbltime 
+      Begin VB.Label Label18 
          BackStyle       =   0  'Transparent
-         Caption         =   "lbltime"
-         BeginProperty Font 
-            Name            =   "Arial"
-            Size            =   21.75
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H0000FF00&
-         Height          =   495
-         Left            =   16080
-         TabIndex        =   8
-         Top             =   3000
-         Width           =   2895
-      End
-      Begin VB.Label lbldate 
-         BackStyle       =   0  'Transparent
-         Caption         =   "lbldate"
-         BeginProperty Font 
-            Name            =   "Arial"
-            Size            =   21.75
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H0000FF00&
-         Height          =   375
-         Left            =   16080
-         TabIndex        =   7
-         Top             =   2520
-         Width           =   2895
-      End
-      Begin VB.Label lblstatus 
-         BackStyle       =   0  'Transparent
-         Caption         =   "Stable"
+         Caption         =   "Click ADD button to add new UNIT OF MEASURE."
          BeginProperty Font 
             Name            =   "Tahoma"
-            Size            =   14.25
+            Size            =   6.75
             Charset         =   0
-            Weight          =   700
+            Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         ForeColor       =   &H8000000B&
-         Height          =   495
-         Left            =   15960
-         TabIndex        =   6
-         Top             =   1080
-         Width           =   1695
+         ForeColor       =   &H00000000&
+         Height          =   255
+         Left            =   10200
+         TabIndex        =   24
+         Top             =   1680
+         Width           =   4215
       End
-      Begin VB.Label lblin 
+      Begin VB.Label Label4 
          BackStyle       =   0  'Transparent
-         Caption         =   "Weigh In:"
+         Caption         =   "DESTINATION :"
          BeginProperty Font 
             Name            =   "Tahoma"
-            Size            =   11.25
+            Size            =   9.75
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         ForeColor       =   &H8000000B&
-         Height          =   495
-         Left            =   2040
-         TabIndex        =   5
-         Top             =   120
-         Width           =   1455
+         ForeColor       =   &H80000009&
+         Height          =   255
+         Index           =   6
+         Left            =   720
+         TabIndex        =   23
+         Top             =   1800
+         Width           =   1815
       End
-   End
-   Begin VB.Timer Timer6 
-      Enabled         =   0   'False
-      Interval        =   500
-      Left            =   0
-      Top             =   120
-   End
-   Begin VB.Timer Timer5 
-      Enabled         =   0   'False
-      Interval        =   500
-      Left            =   480
-      Top             =   120
-   End
-   Begin VB.CommandButton cmdclose 
-      Caption         =   "&CLOSE"
-      BeginProperty Font 
-         Name            =   "Arial"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   855
-      Left            =   9600
-      MouseIcon       =   "frmWT.frx":055C
-      MousePointer    =   99  'Custom
-      TabIndex        =   43
-      Top             =   1080
-      Width           =   1300
-   End
-   Begin VB.CommandButton cmdviewin 
-      Caption         =   "VIEW &ALL INBOUND"
-      BeginProperty Font 
-         Name            =   "Arial"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   855
-      Left            =   6720
-      MouseIcon       =   "frmWT.frx":06AE
-      MousePointer    =   99  'Custom
-      TabIndex        =   42
-      Top             =   1080
-      Width           =   1300
-   End
-   Begin VB.CommandButton cmdviewall 
-      Caption         =   "VIEW ALL CO&MPLETE"
-      BeginProperty Font 
-         Name            =   "Arial"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   855
-      Left            =   8160
-      MouseIcon       =   "frmWT.frx":0800
-      MousePointer    =   99  'Custom
-      TabIndex        =   41
-      Top             =   1080
-      Width           =   1300
-   End
-   Begin VB.CommandButton cmdprint 
-      Caption         =   "&PRINT"
-      Enabled         =   0   'False
-      BeginProperty Font 
-         Name            =   "Arial"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   855
-      Left            =   5280
-      MouseIcon       =   "frmWT.frx":0952
-      MousePointer    =   99  'Custom
-      TabIndex        =   1
-      Top             =   1080
-      Width           =   1300
-   End
-   Begin VB.CommandButton cmdsave 
-      Caption         =   "&SAVE"
-      Enabled         =   0   'False
-      BeginProperty Font 
-         Name            =   "Arial"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   855
-      Left            =   3840
-      MouseIcon       =   "frmWT.frx":0AA4
-      MousePointer    =   99  'Custom
-      TabIndex        =   21
-      Top             =   1080
-      Width           =   1305
-   End
-   Begin VB.CommandButton cmdout 
-      Caption         =   "&OUT"
-      BeginProperty Font 
-         Name            =   "Arial"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   855
-      Left            =   2280
-      MouseIcon       =   "frmWT.frx":0BF6
-      MousePointer    =   99  'Custom
-      TabIndex        =   20
-      Top             =   1080
-      Width           =   1300
-   End
-   Begin VB.CommandButton cmdin 
-      Caption         =   "&IN"
-      BeginProperty Font 
-         Name            =   "Arial"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   855
-      Left            =   840
-      MouseIcon       =   "frmWT.frx":0D48
-      MousePointer    =   99  'Custom
-      Picture         =   "frmWT.frx":0E9A
-      TabIndex        =   19
-      Top             =   1080
-      Width           =   1300
-   End
-   Begin VB.Timer tcomm 
-      Enabled         =   0   'False
-      Interval        =   500
-      Left            =   2280
-      Top             =   240
-   End
-   Begin VB.Timer Timer4 
-      Enabled         =   0   'False
-      Interval        =   1000
-      Left            =   0
-      Top             =   6120
-   End
-   Begin VB.Timer Timer3 
-      Enabled         =   0   'False
-      Interval        =   1000
-      Left            =   240
-      Top             =   6120
-   End
-   Begin VB.Timer tdatetime 
-      Interval        =   1000
-      Left            =   0
-      Top             =   6960
-   End
-   Begin VB.Timer Timer2 
-      Enabled         =   0   'False
-      Interval        =   1000
-      Left            =   240
-      Top             =   5280
-   End
-   Begin VB.Timer Timer1 
-      Enabled         =   0   'False
-      Interval        =   1000
-      Left            =   0
-      Top             =   5520
+      Begin VB.Label Label5 
+         BackStyle       =   0  'Transparent
+         Caption         =   "COUNT # :"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H80000009&
+         Height          =   255
+         Index           =   4
+         Left            =   1080
+         TabIndex        =   22
+         Top             =   4080
+         Width           =   2055
+      End
    End
    Begin MSCommLib.MSComm MSComm1 
       Left            =   120
-      Top             =   4200
+      Top             =   4080
       _ExtentX        =   1005
       _ExtentY        =   1005
       _Version        =   393216
       DTREnable       =   -1  'True
    End
-   Begin VB.Label Label15 
+   Begin VB.Label Label8 
       Alignment       =   2  'Center
       BackStyle       =   0  'Transparent
-      Caption         =   "(ESC)"
+      Caption         =   "(F1)"
       BeginProperty Font 
          Name            =   "Tahoma"
          Size            =   12
@@ -1782,35 +1709,15 @@ Begin VB.Form frmWT
       EndProperty
       ForeColor       =   &H80000007&
       Height          =   255
-      Left            =   9720
-      TabIndex        =   50
-      Top             =   720
-      Width           =   735
-   End
-   Begin VB.Label Label14 
-      Alignment       =   2  'Center
-      BackStyle       =   0  'Transparent
-      Caption         =   "(F6)"
-      BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   12
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H80000007&
-      Height          =   255
-      Left            =   8400
-      TabIndex        =   49
-      Top             =   720
+      Left            =   1320
+      TabIndex        =   85
+      Top             =   600
       Width           =   495
    End
-   Begin VB.Label Label13 
+   Begin VB.Label Label9 
       Alignment       =   2  'Center
       BackStyle       =   0  'Transparent
-      Caption         =   "(F5)"
+      Caption         =   "(F2)"
       BeginProperty Font 
          Name            =   "Tahoma"
          Size            =   12
@@ -1822,29 +1729,9 @@ Begin VB.Form frmWT
       EndProperty
       ForeColor       =   &H80000007&
       Height          =   255
-      Left            =   6960
-      TabIndex        =   48
-      Top             =   720
-      Width           =   495
-   End
-   Begin VB.Label Label12 
-      Alignment       =   2  'Center
-      BackStyle       =   0  'Transparent
-      Caption         =   "(F9)"
-      BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   12
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H80000007&
-      Height          =   255
-      Left            =   5520
-      TabIndex        =   47
-      Top             =   720
+      Left            =   2760
+      TabIndex        =   84
+      Top             =   600
       Width           =   495
    End
    Begin VB.Label Label11 
@@ -1863,14 +1750,14 @@ Begin VB.Form frmWT
       ForeColor       =   &H80000007&
       Height          =   255
       Left            =   3840
-      TabIndex        =   46
-      Top             =   720
+      TabIndex        =   83
+      Top             =   600
       Width           =   1095
    End
-   Begin VB.Label Label9 
+   Begin VB.Label Label12 
       Alignment       =   2  'Center
       BackStyle       =   0  'Transparent
-      Caption         =   "(F2)"
+      Caption         =   "(F9)"
       BeginProperty Font 
          Name            =   "Tahoma"
          Size            =   12
@@ -1882,15 +1769,15 @@ Begin VB.Form frmWT
       EndProperty
       ForeColor       =   &H80000007&
       Height          =   255
-      Left            =   2760
-      TabIndex        =   45
-      Top             =   720
+      Left            =   5520
+      TabIndex        =   82
+      Top             =   600
       Width           =   495
    End
-   Begin VB.Label Label8 
+   Begin VB.Label Label13 
       Alignment       =   2  'Center
       BackStyle       =   0  'Transparent
-      Caption         =   "(F1)"
+      Caption         =   "(F5)"
       BeginProperty Font 
          Name            =   "Tahoma"
          Size            =   12
@@ -1902,13 +1789,53 @@ Begin VB.Form frmWT
       EndProperty
       ForeColor       =   &H80000007&
       Height          =   255
-      Left            =   1320
-      TabIndex        =   44
-      Top             =   720
+      Left            =   6960
+      TabIndex        =   81
+      Top             =   600
       Width           =   495
+   End
+   Begin VB.Label Label14 
+      Alignment       =   2  'Center
+      BackStyle       =   0  'Transparent
+      Caption         =   "(F6)"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   12
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H80000007&
+      Height          =   255
+      Left            =   8400
+      TabIndex        =   80
+      Top             =   600
+      Width           =   495
+   End
+   Begin VB.Label Label15 
+      Alignment       =   2  'Center
+      BackStyle       =   0  'Transparent
+      Caption         =   "(ESC)"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   12
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H80000007&
+      Height          =   255
+      Left            =   9720
+      TabIndex        =   79
+      Top             =   600
+      Width           =   735
    End
 End
-Attribute VB_Name = "frmWT"
+Attribute VB_Name = "frmWeighing"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
@@ -2109,7 +2036,7 @@ Me.cmdsave.Enabled = True
         Set rs = Nothing
     rs.Open "tblcount", con, adOpenStatic, adLockReadOnly
         count_num = generate((Int(rs!countnumber) + 1), 7)
-        Me.lblCount.Caption = count_num
+        Me.lblcount.Caption = count_num
 Me.lbldi.Visible = True
 Me.lbldatewi.Visible = True
 lblwi.Caption = ReturnNonAlpha(Me.txtkilo.Text) + " kg"
@@ -2190,7 +2117,7 @@ Me.txtremarks.Enabled = True
     Me.cmbdest.Text = rstruck!Destination & vbNullString
     Me.txtscaleprice.Text = rstruck!scale_price
     Me.txtremarks.Text = rstruck!Remarks
-    Me.lblCount.Caption = rstruck!countnum
+    Me.lblcount.Caption = rstruck!countnum
 txtstatus.Text = "OUT"
 
 End If
@@ -2390,7 +2317,7 @@ txtstatus.Text = "IN"
                 "'" & CDbl(Me.txtscaleprice.Text) & "'," & _
                 "'" & txtstatus.Text & "'," & _
                 "'" & Me.txtremarks.Text & "'," & _
-                "'" & Me.lblCount.Caption & "'" & _
+                "'" & Me.lblcount.Caption & "'" & _
                 ")"
                   .Execute
                           Call addNewLog(currentuser, "Weigh IN - Transaction No.: " + Me.txttransac.Text + " - Plate Number: " + Me.txtplatenum.Text)
@@ -2539,7 +2466,7 @@ ReSizePosForm Me, Me.height, Me.width, Me.Left, Me.Top, True
 On Error GoTo ShowError
 Set rs = Nothing
 rs.Open "tblcount", con, 3, 3
-Me.lblCount.Caption = rs!countnumber
+Me.lblcount.Caption = rs!countnumber
 Set rscomm = Nothing
 rscomm.Open "select * from tblcomm ", ocn, 3, 3
 comnum = rscomm!PortNum
@@ -2879,4 +2806,6 @@ Public Function ReturnNonAlpha(ByVal sString As String) As String
        End If
    Next i
 End Function
+
+
 

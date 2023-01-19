@@ -37,62 +37,62 @@ Begin VB.Form MainForm
          NumButtons      =   15
          BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
             Caption         =   "TRUCK SCALE"
-            ImageIndex      =   16
+            ImageIndex      =   1
          EndProperty
          BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
             Style           =   3
          EndProperty
          BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
             Caption         =   "CONNECTION"
-            ImageIndex      =   2
+            ImageIndex      =   3
          EndProperty
          BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
             Caption         =   "CUSTOMER"
-            ImageIndex      =   4
+            ImageIndex      =   5
          EndProperty
          BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
             Caption         =   "COMMODITY"
-            ImageIndex      =   3
+            ImageIndex      =   4
          EndProperty
          BeginProperty Button6 {66833FEA-8583-11D1-B16A-00C0F0283628} 
             Caption         =   "DESTINATION"
-            ImageIndex      =   19
+            ImageIndex      =   2
          EndProperty
          BeginProperty Button7 {66833FEA-8583-11D1-B16A-00C0F0283628} 
             Caption         =   "REPORTS"
-            ImageIndex      =   5
+            ImageIndex      =   6
          EndProperty
          BeginProperty Button8 {66833FEA-8583-11D1-B16A-00C0F0283628} 
             Caption         =   "RESET DATA"
-            ImageIndex      =   6
+            ImageIndex      =   7
          EndProperty
          BeginProperty Button9 {66833FEA-8583-11D1-B16A-00C0F0283628} 
             Caption         =   "USER'S"
-            ImageIndex      =   7
+            ImageIndex      =   8
          EndProperty
          BeginProperty Button10 {66833FEA-8583-11D1-B16A-00C0F0283628} 
             Caption         =   "COMPANY"
-            ImageIndex      =   8
+            ImageIndex      =   9
          EndProperty
          BeginProperty Button11 {66833FEA-8583-11D1-B16A-00C0F0283628} 
             Caption         =   "LOG OUT"
-            ImageIndex      =   9
+            ImageIndex      =   10
          EndProperty
          BeginProperty Button12 {66833FEA-8583-11D1-B16A-00C0F0283628} 
             Caption         =   "BACK UP"
-            ImageIndex      =   10
+            ImageIndex      =   11
          EndProperty
          BeginProperty Button13 {66833FEA-8583-11D1-B16A-00C0F0283628} 
             Caption         =   "POWER"
-            ImageIndex      =   11
+            ImageIndex      =   12
          EndProperty
          BeginProperty Button14 {66833FEA-8583-11D1-B16A-00C0F0283628} 
             Caption         =   "CONTACT US"
-            ImageIndex      =   12
+            ImageIndex      =   13
          EndProperty
          BeginProperty Button15 {66833FEA-8583-11D1-B16A-00C0F0283628} 
             Caption         =   "LOGS"
-            ImageIndex      =   13
+            ImageIndex      =   14
          EndProperty
       EndProperty
    End
@@ -143,7 +143,7 @@ Begin VB.Form MainForm
             Style           =   5
             Object.Width           =   1835
             MinWidth        =   1835
-            TextSave        =   "6:31 PM"
+            TextSave        =   "9:23 am"
          EndProperty
          BeginProperty Panel7 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Bevel           =   2
@@ -157,7 +157,7 @@ Begin VB.Form MainForm
             Style           =   6
             Object.Width           =   2011
             MinWidth        =   2011
-            TextSave        =   "11/7/2022"
+            TextSave        =   "18/01/2023"
          EndProperty
          BeginProperty Panel9 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Alignment       =   1
@@ -208,7 +208,7 @@ Begin VB.Form MainForm
       UseMaskColor    =   0   'False
       _Version        =   393216
       BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
-         NumListImages   =   19
+         NumListImages   =   14
          BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
             Picture         =   "MainForm.frx":2AF8B
             Key             =   ""
@@ -218,71 +218,51 @@ Begin VB.Form MainForm
             Key             =   ""
          EndProperty
          BeginProperty ListImage3 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MainForm.frx":31DD2
+            Picture         =   "MainForm.frx":31BCF
             Key             =   ""
          EndProperty
          BeginProperty ListImage4 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MainForm.frx":35438
+            Picture         =   "MainForm.frx":352E9
             Key             =   ""
          EndProperty
          BeginProperty ListImage5 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MainForm.frx":38B33
+            Picture         =   "MainForm.frx":3894F
             Key             =   ""
          EndProperty
          BeginProperty ListImage6 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MainForm.frx":3C241
+            Picture         =   "MainForm.frx":3C04A
             Key             =   ""
          EndProperty
          BeginProperty ListImage7 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MainForm.frx":3F8B4
+            Picture         =   "MainForm.frx":3F758
             Key             =   ""
          EndProperty
          BeginProperty ListImage8 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MainForm.frx":42BCF
+            Picture         =   "MainForm.frx":42DCB
             Key             =   ""
          EndProperty
          BeginProperty ListImage9 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MainForm.frx":462E3
+            Picture         =   "MainForm.frx":460E6
             Key             =   ""
          EndProperty
          BeginProperty ListImage10 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MainForm.frx":49895
+            Picture         =   "MainForm.frx":497FA
             Key             =   ""
          EndProperty
          BeginProperty ListImage11 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MainForm.frx":4CCE7
+            Picture         =   "MainForm.frx":4CDAC
             Key             =   ""
          EndProperty
          BeginProperty ListImage12 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MainForm.frx":5042E
+            Picture         =   "MainForm.frx":501FE
             Key             =   ""
          EndProperty
          BeginProperty ListImage13 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MainForm.frx":53B6E
+            Picture         =   "MainForm.frx":53945
             Key             =   ""
          EndProperty
          BeginProperty ListImage14 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MainForm.frx":57222
-            Key             =   ""
-         EndProperty
-         BeginProperty ListImage15 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MainForm.frx":58EA0
-            Key             =   ""
-         EndProperty
-         BeginProperty ListImage16 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MainForm.frx":5E7C0
-            Key             =   ""
-         EndProperty
-         BeginProperty ListImage17 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MainForm.frx":62E3D
-            Key             =   ""
-         EndProperty
-         BeginProperty ListImage18 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MainForm.frx":67097
-            Key             =   ""
-         EndProperty
-         BeginProperty ListImage19 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MainForm.frx":6DF8F
+            Picture         =   "MainForm.frx":57085
             Key             =   ""
          EndProperty
       EndProperty
@@ -290,7 +270,7 @@ Begin VB.Form MainForm
    Begin VB.Image Image1 
       Height          =   11745
       Left            =   0
-      Picture         =   "MainForm.frx":714A6
+      Picture         =   "MainForm.frx":5A739
       Stretch         =   -1  'True
       Top             =   840
       Width           =   19200
@@ -483,7 +463,8 @@ frmUM.Show 1
 End Sub
 
 Private Sub mtf_Click()
-frmWT.Show 1
+'frmWT.Show 1
+frmWeighing.Show 1
 End Sub
 
 Private Sub mus_Click()
@@ -500,7 +481,8 @@ End Sub
 
 Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
 Select Case Button.index
-Case 1: frmWT.Show 1
+'Case 1: frmWT.Show 1
+Case 1: frmWeighing.Show 1
 Case 3: frmComm.Show 1
 Case 4: frmCustomer.Show 1
 Case 5: frmProduct.Show 1

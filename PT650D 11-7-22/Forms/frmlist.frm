@@ -1110,7 +1110,7 @@ Begin VB.Form frmlist
          Strikethrough   =   0   'False
       EndProperty
       CustomFormat    =   "yyyy/MM/dd"
-      Format          =   131530755
+      Format          =   130678787
       CurrentDate     =   42922
    End
    Begin MSComCtl2.DTPicker DTPicker2 
@@ -1132,7 +1132,7 @@ Begin VB.Form frmlist
          Strikethrough   =   0   'False
       EndProperty
       CustomFormat    =   "yyyy/MM/dd"
-      Format          =   131530755
+      Format          =   130678787
       CurrentDate     =   42922
    End
    Begin VB.Label Label7 
