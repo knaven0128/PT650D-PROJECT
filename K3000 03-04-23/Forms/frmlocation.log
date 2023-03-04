@@ -1,0 +1,15 @@
+Line 17: Class Weighing.jcbutton of control cmdsave was not a loaded control class.
+Line 57: Class Weighing.ctrlLiner of control ctrlLiner1 was not a loaded control class.
+Line 66: Class Weighing.jcbutton of control jcbutton1 was not a loaded control class.
+Line 23: The property name _ExtentX in cmdsave is invalid.
+Line 24: The property name _ExtentY in cmdsave is invalid.
+Line 25: The property name ButtonStyle in cmdsave is invalid.
+Line 36: The property name Caption in cmdsave is invalid.
+Line 37: The property name UseMaskCOlor in cmdsave is invalid.
+Line 63: The property name _ExtentX in ctrlLiner1 is invalid.
+Line 64: The property name _ExtentY in ctrlLiner1 is invalid.
+Line 72: The property name _ExtentX in jcbutton1 is invalid.
+Line 73: The property name _ExtentY in jcbutton1 is invalid.
+Line 74: The property name ButtonStyle in jcbutton1 is invalid.
+Line 85: The property name Caption in jcbutton1 is invalid.
+Line 86: The property name UseMaskCOlor in jcbutton1 is invalid.
