@@ -35,10 +35,30 @@ Me.Field11.Text = Me.Field11.Text
 End Sub
 
 Private Sub Detail_Format()
-Me.Field19.Text = Format(Me.Field19.Text, "###,###,##0.00")
-Me.Field20.Text = Format(Me.Field20.Text, "###,###,##0.00")
+If Me.Field19.Text > 0 Then
+Me.Field19.Text = "PHP " + Format(Me.Field19.Text, "###,###,##0.00")
+Else
+Me.Field19.Text = ""
+End If
+If Me.Field20.Text > 0 Then
+Me.Field20.Text = "PHP " + Format(Me.Field20.Text, "###,###,##0.00")
+Else
+Me.Field20.Text = ""
+End If
+If Me.Field7.Text > 0 Then
 Me.Field7.Text = Format(Me.Field7.Text, "###,###,##0.00")
+Else
+Me.Field7.Text = ""
+End If
+If Me.Field14.Text > 0 Then
 Me.Field14.Text = Format(Me.Field14.Text, "###,###,##0.00")
+Else
+Me.Field14.Text = ""
+End If
+
+If Me.Field13.Text <= 0 Then
+Me.Field13.Text = ""
+End If
 End Sub
 
 Private Sub GroupHeader1_BeforePrint()

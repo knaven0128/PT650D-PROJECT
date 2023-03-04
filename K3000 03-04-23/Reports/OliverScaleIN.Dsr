@@ -1,13 +1,13 @@
 VERSION 5.00
 Begin {9EB8768B-CDFA-44DF-8F3E-857A8405E1DB} OliverScaleIN 
-   ClientHeight    =   10620
+   ClientHeight    =   12375
    ClientLeft      =   225
    ClientTop       =   570
-   ClientWidth     =   14385
+   ClientWidth     =   22800
    StartUpPosition =   3  'Windows Default
    WindowState     =   2  'Maximized
-   _ExtentX        =   25374
-   _ExtentY        =   18733
+   _ExtentX        =   40217
+   _ExtentY        =   21828
    SectionData     =   "OliverScaleIN.dsx":0000
 End
 Attribute VB_Name = "OliverScaleIN"
