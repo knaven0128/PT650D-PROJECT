@@ -1,5 +1,5 @@
-frmbackup = 0, 0, 0, 0, C, 0, 0, 0, 0, C
-frmComm = 0, 0, 0, 0, C, 0, 0, 0, 0, C
+frmbackup = 156, 156, 1141, 625, , 0, 0, 0, 0, C
+frmComm = 156, 156, 1141, 625, , 0, 0, 0, 0, C
 frmcompany = 0, 0, 0, 0, C, 0, 0, 0, 0, C
 frmCustomer = 0, 0, 0, 0, C, 0, 0, 0, 0, C
 frmdatabase = 0, 0, 0, 0, C, 0, 0, 0, 0, C
@@ -8,7 +8,7 @@ frmLogin = 0, 0, 0, 0, C, 0, 0, 0, 0, C
 frmpermission = 0, 0, 0, 0, C, 0, 0, 0, 0, C
 frmProduct = 0, 0, 0, 0, C, 0, 0, 0, 0, C
 frmprogrammer = 0, 0, 0, 0, C, 0, 0, 0, 0, C
-frmregister = 0, 0, 0, 0, C, 0, 0, 0, 0, C
+frmregister = 0, 0, 0, 0, C, 26, 26, 1011, 495, C
 frmReprint = 0, 0, 0, 0, C, 0, 0, 0, 0, C
 frmscaleoffline = 0, 0, 0, 0, C, 0, 0, 0, 0, C
 frmUM = 0, 0, 0, 0, C, 0, 0, 0, 0, C

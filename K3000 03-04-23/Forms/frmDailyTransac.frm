@@ -1,6 +1,6 @@
 VERSION 5.00
 Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCT2.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "mscomctl.ocx"
 Begin VB.Form frmDailyTransac 
    BackColor       =   &H8000000D&
    BorderStyle     =   1  'Fixed Single
@@ -126,7 +126,7 @@ Begin VB.Form frmDailyTransac
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   130940929
+      Format          =   123928577
       CurrentDate     =   42922
    End
    Begin VB.Timer Timer1 
@@ -152,7 +152,7 @@ Begin VB.Form frmDailyTransac
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   130940931
+      Format          =   123928579
       CurrentDate     =   42922
    End
    Begin MSComctlLib.ProgressBar progStat 
@@ -543,10 +543,10 @@ oSheet.Range("A1:K1").Font.Size = 30
 oSheet.Range("A2:K2").Font.Size = 16
 oSheet.Range("C1").Value = rscompany!company_name
 oSheet.Range("D2").Value = "(ALL TRANSACTION)"
-oSheet.Range("H3").Value = "Date Printed:"
-oSheet.Range("I3").Value = Me.Label9.Caption
-oSheet.Range("H4").Value = "Time Printed:"
-oSheet.Range("I4").Value = Me.Label11.Caption
+oSheet.Range("A3").Value = "Date Printed:"
+oSheet.Range("B3").Value = Me.Label9.Caption
+oSheet.Range("A4").Value = "Time Printed:"
+oSheet.Range("B4").Value = Me.Label11.Caption
 oSheet.Range("A7:T7").Font.Bold = True
 oSheet.Range("A7:T7").Borders.Weight = xlHairline
 oSheet.Range("A2:M2").ColumnWidth = 20
