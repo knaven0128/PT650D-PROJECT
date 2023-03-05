@@ -36,12 +36,12 @@ End Sub
 
 Private Sub Detail_Format()
 If Me.Field19.Text > 0 Then
-Me.Field19.Text = "PHP " + Format(Me.Field19.Text, "###,###,##0.00")
+Me.Field19.Text = "Php " + Format(Me.Field19.Text, "###,###,##0.00")
 Else
 Me.Field19.Text = ""
 End If
 If Me.Field20.Text > 0 Then
-Me.Field20.Text = "PHP " + Format(Me.Field20.Text, "###,###,##0.00")
+Me.Field20.Text = "Php " + Format(Me.Field20.Text, "###,###,##0.00")
 Else
 Me.Field20.Text = ""
 End If
