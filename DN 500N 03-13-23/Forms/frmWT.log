@@ -1,0 +1,38 @@
+Line 82: Class MSDataGridLib.DataGrid of control DataGrid1 was not a loaded control class.
+Line 167: Class MSDataGridLib.DataGrid of control DataGrid2 was not a loaded control class.
+Line 456: Class ToggleButtonActivex.ToggleButton of control ToggleButton1 was not a loaded control class.
+Line 1762: Class MSCommLib.MSComm of control MSComm1 was not a loaded control class.
+Line 88: The property name _ExtentX in DataGrid1 is invalid.
+Line 89: The property name _ExtentY in DataGrid1 is invalid.
+Line 90: The property name _Version in DataGrid1 is invalid.
+Line 91: The property name AllowUpdate in DataGrid1 is invalid.
+Line 92: The property name ColumnHeaders in DataGrid1 is invalid.
+Line 93: The property name HeadLines in DataGrid1 is invalid.
+Line 94: The property name RowHeight in DataGrid1 is invalid.
+Line 103: The property name HeadFont in DataGrid1 is invalid.
+Line 113: The property name ColumnCount in DataGrid1 is invalid.
+Line 126: The property name Column00 in DataGrid1 is invalid.
+Line 139: The property name Column01 in DataGrid1 is invalid.
+Line 140: The property name SplitCount in DataGrid1 is invalid.
+Line 146: The property name Split0 in DataGrid1 is invalid.
+Line 173: The property name _ExtentX in DataGrid2 is invalid.
+Line 174: The property name _ExtentY in DataGrid2 is invalid.
+Line 175: The property name _Version in DataGrid2 is invalid.
+Line 176: The property name AllowUpdate in DataGrid2 is invalid.
+Line 177: The property name ColumnHeaders in DataGrid2 is invalid.
+Line 178: The property name HeadLines in DataGrid2 is invalid.
+Line 179: The property name RowHeight in DataGrid2 is invalid.
+Line 188: The property name HeadFont in DataGrid2 is invalid.
+Line 198: The property name ColumnCount in DataGrid2 is invalid.
+Line 211: The property name Column00 in DataGrid2 is invalid.
+Line 224: The property name Column01 in DataGrid2 is invalid.
+Line 225: The property name SplitCount in DataGrid2 is invalid.
+Line 231: The property name Split0 in DataGrid2 is invalid.
+Line 462: The property name _ExtentX in ToggleButton1 is invalid.
+Line 463: The property name _ExtentY in ToggleButton1 is invalid.
+Line 473: The property name OnFont in ToggleButton1 is invalid.
+Line 482: The property name OffFont in ToggleButton1 is invalid.
+Line 1765: The property name _ExtentX in MSComm1 is invalid.
+Line 1766: The property name _ExtentY in MSComm1 is invalid.
+Line 1767: The property name _Version in MSComm1 is invalid.
+Line 1768: The property name DTREnable in MSComm1 is invalid.

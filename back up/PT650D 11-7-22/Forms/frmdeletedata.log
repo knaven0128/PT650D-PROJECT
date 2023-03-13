@@ -1,0 +1,11 @@
+Line 56: Class ProgressBarPrj.ProgressBar of control ProgressBar1 was not a loaded control class.
+Line 63: The property name _ExtentX in ProgressBar1 is invalid.
+Line 64: The property name _ExtentY in ProgressBar1 is invalid.
+Line 65: The property name vPercView in ProgressBar1 is invalid.
+Line 66: The property name vForeColor in ProgressBar1 is invalid.
+Line 67: The property name vBackColor in ProgressBar1 is invalid.
+Line 68: The property name vTextColor in ProgressBar1 is invalid.
+Line 69: The property name vPercCaption in ProgressBar1 is invalid.
+Line 70: The property name vUnloadProgBar in ProgressBar1 is invalid.
+Line 71: The property name vPercType in ProgressBar1 is invalid.
+Line 72: The property name vPercShape in ProgressBar1 is invalid.
